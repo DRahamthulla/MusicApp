@@ -8,12 +8,13 @@
       }
     ],
     "env": {
-      "MYSQL_HOST": "@localhost",
-      "MYSQL_PORT": "@3306",
-    "MYSQL_DATABASE": "@music",
-      "MYSQL_USER": "@root",
-      "MYSQL_PASSWORD": "@Raham@8143"
-    },
+        "MYSQL_HOST": "@secret-name",
+        "MYSQL_PORT": "@secret-name",
+        "MYSQL_DATABASE": "@secret-name",
+        "MYSQL_USER": "@secret-name",
+        "MYSQL_PASSWORD": "@secret-name"
+      },
+      
     "routes": [
       {
         "src": "/(.*)",
