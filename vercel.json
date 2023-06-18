@@ -1,26 +1,27 @@
- 
+
 {
-
-    "builds": [{
-
+    "version": 2,
+    "builds": [
+      {
         "src": "music/wsgi.py",
-
-        "use": "@vercel/python",
-
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
-
-    }],
-
+        "use": "@vercel/python"
+      }
+    ],
+    "env": {
+      "MYSQL_HOST": "@localhost",
+      "MYSQL_PORT": "@3306",
+    "MYSQL_DATABASE": "@music",
+      "MYSQL_USER": "@root",
+      "MYSQL_PASSWORD": "@Raham@8143"
+    },
     "routes": [
-
-        {
-
-            "src": "/(.*)",
-
-            "dest": "music/wsgi.py"
-
-        }
-
-    ]
-
-}
+      {
+        "src": "/(.*)",
+        "dest": "music/wsgi.py"
+      }
+    ],
+    "functions": {
+      "api/**/*": true
+    }
+  }
+  
