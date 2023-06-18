@@ -19,9 +19,6 @@
         "src": "/(.*)",
         "dest": "music/wsgi.py"
       }
-    ],
-    "functions": {
-      "api/**/*": true
-    }
+    ]
   }
   
