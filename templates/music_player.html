@@ -1,0 +1,94 @@
+{% load  static%}
+<link rel="stylesheet" type="text/css" href="{% static 'C:\Users\ADMIN\Desktop\music_App\static\css\style.css' %}">
+<header>Welcome to Music Share</header>
+<title>Music Share</title>
+<div class="body">
+  <h1>Music Player</h1>
+  <ul>
+    {% for music_file in music_files2 %}
+        <li>
+            <p>Title: {{ music_file.title }}</p>
+            <p>Artist: {{ music_file.artist}}</p>
+            <p><img src="{{ music_file.image.url }}" alt="Image description" width="300" height="200" class="image-class"></p>
+           <button onclick="playMusic('{{ music_file.file.url}}')">Play</button>
+           <button onclick="stopMusic()">Stop</button>
+           <button onclick="rewindMusic()">Rewind</button>
+           <button onclick="forwardMusic()">Forward</button>
+           <button onclick="increaseVolume()" class="volume-button">Up</button>
+           <button onclick="decreaseVolume()" class="volume-button">Volume Down</button>
+           {% empty %}
+    <li>No results found.</li>
+  </ul>
+  {% endfor %}
+    <li>
+        <div style="text-align: center;">
+        <button><a href="{% url 'music:back'%}"   >BACK </a></button></li>
+        </div>
+      </div>
+
+      <script>
+
+        // play.js
+
+// Variable to store the currently playing audio
+var audio;
+
+function playMusic(url) {
+  // Stop the currently playing audio, if any
+  stopMusic();
+
+  // Create a new audio element
+  audio = new Audio(url);
+
+  // Play the music
+  audio.play();
+}
+
+function stopMusic() {
+  // Check if audio is currently playing
+  if (audio && !audio.paused) {
+    // Pause and reset the audio
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+function increaseVolume() {
+  // Check if audio is currently playing
+  if (audio) {
+    // Increase the volume by 10%
+    audio.volume += 0.5;
+  }
+}
+
+function decreaseVolume() {
+  // Check if audio is currently playing
+  if (audio) {
+    // Decrease the volume by 10%
+    audio.volume -= 0.1;
+  }
+
+}
+  function rewindMusic() {
+    // Check if audio is currently playing
+    if (audio) {
+      // Rewind the audio by 5 seconds
+      audio.currentTime -= 5;
+    }
+  }
+
+  function forwardMusic() {
+    // Check if audio is currently playing
+    if (audio) {
+      // Forward the audio by 5 seconds
+      audio.currentTime += 5;
+    }
+}
+
+      </script>
+
+        <footer>
+            <!-- Your footer content -->
+            <p>©Rahamthulla 2023 Your Website. All rights reserved.</p>
+          </footer>
+        

@@ -1,12 +1,23 @@
+<!-- music_files.html -->
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
   <h2>Shared Music Files</h2>
   <ul>
-    {% for music_file in music_files %}
-      <li>{{ music_file.title }} - {{ music_file.artist }} ({{ music_file.genre }})</li>
+    {% for music_file in music_files1 %}
+      <li>{{ music_file.title }} - {{ music_file.artist }} {{ music_file.genre }}
+       
+      </li>
     {% empty %}
       <li>No music files shared yet.</li>
     {% endfor %}
   </ul>
+  <button><a href="{% url 'music:back'%}">BACK </a></button>
+
 {% endblock %}

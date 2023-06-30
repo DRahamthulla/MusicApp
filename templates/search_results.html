@@ -1,0 +1,34 @@
+{% load static%}
+
+
+<title>Music Share</title>
+<header>Welcome to Music Share</header>
+<link rel="stylesheet" type="text/css" href="{% static 'C:\Users\ADMIN\Desktop\music_App\static\css\style.css' %}">
+<script src="{% static 'play.js' %}"></script>
+
+<div class="body">
+<h2>{{ query }}</h2>
+<ul>
+    {% for music in  results %}
+   
+    <p>Title: {{ music.title }}</p>
+    <p>Artist: {{ music.artist  }}</p>
+    <p>Genre:{{ music.genre}}</p>
+    <p><img src="{{ music.image.url }}" alt="Image description" width="300" height="200" class="image-class"></p>
+    <button onclick="playMusic('{{ music.file.url }}')">Play</button>
+    <button onclick="stopMusic()">Stop</button>
+    <button onclick="increaseVolume()" class="volume-button">Up</button>
+    <button onclick="decreaseVolume()" class="volume-button">Volume Down</button>
+  {% empty %}
+    <li>No results found.</li>
+  {% endfor %}
+
+</ul>
+<button><a href="{% url 'music:back'%}">BACK </a></button>
+</div>
+
+<footer>
+    <!-- Your footer content -->
+    <p>©Rahamthulla 2023 Your Website. All rights reserved.</p>
+  </footer>
+ 

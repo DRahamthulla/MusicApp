@@ -5,9 +5,11 @@ from django.contrib.auth import get_user_model
 
 
 class MusicFileForm(forms.ModelForm):
-    class Meta:
+     value = forms.CharField(max_length=100)  # Add 'value' field
+
+     class Meta:
         model = MusicFile
-        fields = ['file', 'title', 'artist', 'genre']
+        fields = ['file', 'title', 'artist', 'genre','image']
 
 User = get_user_model()
 class RegistrationForm(UserCreationForm):

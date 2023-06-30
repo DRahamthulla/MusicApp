@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser,UserManager
+from django.contrib.auth.models import AbstractUser,UserManager,User
 from uuid import uuid4
 
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid4,editable=False)
     name = models.CharField(max_length=100)
@@ -12,6 +14,7 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS=['username']
 
     objects = UserManager()
 
@@ -22,7 +25,10 @@ class MusicFile(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
-    uploaded_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    image=models.ImageField(upload_to='music_files/',default='',null=True)
+    file_path = models.CharField(max_length=255,default='',null=True)
+    value=models.CharField(max_length=10,default='',null=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return self.title

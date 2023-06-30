@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
   <h2>Upload Music File</h2>
-  <form method="POST" enctype="multipart/form-data">
+ <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ form.errors }}
     {{ form.as_p }}
     <button type="submit">Upload</button>
   </form>
+
+<br></br>
+  <button><a href="{% url 'music:back'%}">BACK </a></button>
+  </li>
 {% endblock %}

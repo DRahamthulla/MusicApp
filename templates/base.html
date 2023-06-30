@@ -1,23 +1,47 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
 <head>
   <title>Music Share</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'C:\Users\ADMIN\Desktop\music_App\static\css\style.css' %}">
 </head>
-<body>
-  <nav>
-    </h1> Welcome to Music share App</h1>
-    <br><br>
-
-    {% if user.is_authenticated %}
-    <a href="{% url 'music_files' %}">Music Files</a>
-    <a href="{% url 'upload' %}">Upload</a>
-      <a href="{% url 'logout' %}">Logout</a>
+  <header> Welcome to Music share App</header>
+<div class="body">
+     {% block content %}
+     {% if user.is_authenticated %}
+     <ul>
+     <li><a href="{% url 'music:upload' value='somevalue' %}">Upload</a></li>
+     <li><a href="{% url 'music:music_files1'%}">Music Files </a></li>
+     <li>
+     <form action="{% url 'music:sreach'%}?  " method="GET">
+         <p> Entre the muisc Title to get the songs</p>
+         <input type="text" name="query" placeholder="Search...">
+         <button>Search</button>
+        </form>
+        <li><a href="{% url 'music:object-details' %}"> Music Player</a></li>
+        </ul>  
+         <div class="nav">
+         <button><a  href="{% url 'music:logout' %}">logout</button> </a>   
+  </li>
+</ul>
     {% else %}
-      <a href="{% url 'login' %}">Login</a><br></br>
-      <a href="{% url 'register' %}">Register</a>
+    <ul>
+      {% load static%}
+      {% block head %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+     <p> Already have you account please  login </p>
+    <button><a href="{% url 'music:login'%}">Login </a></button>
+
+    <p>For first time please sign up</p>
+      <button><a href="{% url 'music:register'%}">Sign Up </a></button>
+
+      <ul>
     {% endif %}
-  </nav>
-  {% block content %}
   {% endblock %}
-</body>
-</html>
+</div>
+  <footer>
+    <!-- Your footer content -->
+    <p>©Rahamthulla 2023 Your Website. All rights reserved.</p>
+  </footer>
+
+
+

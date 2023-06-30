@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+<h1>Please upload the only audio Mp3 and image files</h1>
+<button><a href="{% url 'music:back'%}">BACK </a></button>
+{% endblock %}
